@@ -12,7 +12,7 @@
         <h1>Welcome</h1>
         <label for="ins">Enter your Institute name: </label>
         <input type="text" id="ins" placeholder="Institute name"><br><br>
-        <button onclick="hiden_div()">Click here</button>            
+        <button class="btn" onclick="hiden_div()">Click here</button>            
     </div>
 
     <div class="bodycolor" id="divcal">
@@ -55,9 +55,11 @@
                 <input class="input" type="number" id="in9" step="any" value="0">
             </div>
             <div class="divbtn">
-                <button onclick="Calculate()">Calculate</button>
-                <h3>Right NORA is <span id="Rnora"></span></h3>
-                <h3>Left NORA is <span id="Lnora"></span></h3>
+                <button class="btn" onclick="Calculate()">Calculate</button>
+                <div class="divshowcal" id="showcal">
+                    <h3>Right NORA is <span id="Rnora"></span></h3>
+                    <h3>Left NORA is <span id="Lnora"></span></h3>
+                </div>
             </div>
         </div>
     </div>
@@ -102,6 +104,9 @@
 
                 let rNORA = RightNORA.toFixed(3)
                 let lNORA = LeftNORA.toFixed(3)
+
+                var show_cal = document.getElementById("showcal");
+                show_cal.style.display='block';                
 
                 document.getElementById("Rnora").innerHTML = rNORA;
                 document.getElementById("Lnora").innerHTML = lNORA;
