@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Nora</title>
+</head>
+<body>
+    <div class="divbody" id="divins">
+        <h1>Welcome</h1>
+        <label for="ins">Enter your Institute name: </label>
+        <input type="text" id="ins" placeholder="Institute name"><br><br>
+        <button onclick="hiden_div()">Click here</button>            
+    </div>
+
+    <div class="bodycolor" id="divcal">
+        <div class="divbody">
+            <h1>Hello <span id="name"></span> and welcome</h1>
+            <div class="div_cal">
+                <label for="in1" >Enter Right Kidney Cortex Total Count at 1-2 min: </label>
+                <input class="input" type="number" id="in1" step="any" value="0">
+            </div>
+            <div class="div_cal">
+                <label for="in2">Enter Right Kidney Background: </label>
+                <input class="input" type="number" id="in2" step="any" value="0">
+            </div>
+            <div class="div_cal">
+                <label for="in3">Enter Left Kidney Cortex Total Count at 1-2 min: </label>
+                <input class="input" type="number" id="in3" step="any" value="0">
+            </div>
+            <div class="div_cal">
+                <label for="in4">Enter Left Kidney Background: </label>
+                <input class="input" type="number" id="in4" step="any" value="0">
+            </div>
+            <div class="div_cal">
+                <label for="in5">Enter Right Kidney GAD Total Count: </label>
+                <input class="input" type="number" id="in5" step="any" value="0">
+            </div>
+            <div class="div_cal">
+                <label for="in6">Enter Right Kidney GAD Background: </label>
+                <input class="input" type="number" id="in6" step="any" value="0">
+            </div>
+            <div class="div_cal">
+                <label for="in7">Enter Left Kidney GAD Total Count: </label>
+                <input class="input" type="number" id="in7" step="any" value="0">
+            </div>
+            <div class="div_cal">
+                <label for="in8">Enter Left Kidney GAD Background: </label>
+                <input class="input" type="number" id="in8" step="any" value="0">
+            </div>
+            <div class="div_cal">
+                <label for="in9">Enter Delay Time: </label>
+                <input class="input" type="number" id="in9" step="any" value="0">
+            </div>
+            <div class="divbtn">
+                <button onclick="Calculate()">Calculate</button>
+                <h3>Right NORA is <span id="Rnora"></span></h3>
+                <h3>Left NORA is <span id="Lnora"></span></h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hiden_div(){
+            var name_int = document.getElementById("ins").value;
+            document.getElementById("name").innerHTML = name_int;
+
+            var div_welcome = document.getElementById("divins");
+            var div_cal = document.getElementById("divcal");
+            div_welcome.style.display='none';
+            div_cal.style.display = 'block';            
+        }
+
+        function Calculate() {
+                CortexRightKidneyTotalCount = document.getElementById('in1').value;
+                RightKidneyBcG = document.getElementById('in2').value;
+                CortexLeftKidneyTotalCount = document.getElementById('in3').value;
+                LeftKidneyBcG = document.getElementById('in4').value;
+                GADRightKidneyTotalCount = document.getElementById('in5').value;
+                GADRightKidneyBcG = document.getElementById('in6').value;
+                GADLeftKidneyTotalCount = document.getElementById('in7').value;
+                GADLeftKidneyBcG = document.getElementById('in8').value;
+                DelayTime = document.getElementById('in9').value;
+                
+                a = -0.1153
+                r = CortexRightKidneyTotalCount - RightKidneyBcG
+                l = CortexLeftKidneyTotalCount - LeftKidneyBcG
+                A = DelayTime * a
+                exponent = A
+                correction = Math.exp(exponent)
+                resultR = correction * r
+                resultL = correction * l
+                rg = GADRightKidneyTotalCount - GADRightKidneyBcG
+                lg = GADLeftKidneyTotalCount - GADLeftKidneyBcG
+                A = DelayTime * a
+                exponent = A
+                correction = Math.exp(exponent)
+                RightNORA = rg / resultR
+                LeftNORA = lg / resultL
+
+                document.getElementById("Rnora").innerHTML = RightNORA;
+                document.getElementById("Lnora").innerHTML = LeftNORA;
+        }      
+    </script>
+</body>
+</html>
