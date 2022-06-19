@@ -100,8 +100,11 @@
                 RightNORA = rg / resultR
                 LeftNORA = lg / resultL
 
-                document.getElementById("Rnora").innerHTML = RightNORA;
-                document.getElementById("Lnora").innerHTML = LeftNORA;
+                let rNORA = RightNORA.toFixed(3)
+                let lNORA = LeftNORA.toFixed(3)
+
+                document.getElementById("Rnora").innerHTML = rNORA;
+                document.getElementById("Lnora").innerHTML = lNORA;
         }      
     </script>
 </body>
